@@ -57,7 +57,7 @@ pipeline {
                     git config user.email "jana.oem1@gmail.com"
                     git config user.name "gitjan1"
                     BUILD_NUMBER=${BUILD_NUMBER}
-                    sed -i "s/replaceImage/${newImage}:${BUILD_NUMBER}" java-maven-sonar-argocd-helm-k8s/spring-boot-app-manifests-original/deployment-orig.yml
+                    sed -i "s/replaceImage/${newImage}:${BUILD_NUMBER}/g" java-maven-sonar-argocd-helm-k8s/spring-boot-app-manifests-original/deployment-orig.yml
                     cp java-maven-sonar-argocd-helm-k8s/spring-boot-app-manifests-original/deployment-orig.yml java-maven-sonar-argocd-helm-k8s/spring-boot-app-manifests/deployment.yml
                     sed -i "s/janadevps1/ultimate-cicd.*/replaceImage/g" java-maven-sonar-argocd-helm-k8s/spring-boot-app-manifests-original/deployment-orig.yml
                     git add java-maven-sonar-argocd-helm-k8s/spring-boot-app-manifests/deployment.yml
