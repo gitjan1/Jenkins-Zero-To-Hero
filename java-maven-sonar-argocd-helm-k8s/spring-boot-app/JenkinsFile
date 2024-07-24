@@ -15,8 +15,10 @@ pipeline {
     
     stage('Static Code Analysis') {
       steps {
+            script {
              withSonarQubeEnv('sonarqube') {
              sh 'cd java-maven-sonar-argocd-helm-k8s/spring-boot-app && mvn sonar:sonar'
+               }
              timeout(time: 1, unit:'HOURS') {
              def qg = waitForQualityGate()
                 if (qg.status != 'OK') {
