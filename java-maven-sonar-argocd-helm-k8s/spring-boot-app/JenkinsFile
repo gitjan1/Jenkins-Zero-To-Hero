@@ -20,16 +20,12 @@ pipeline {
       }
     }
     stage('Static Code Analysis') {
-      //environment {
-       // SONAR_URL = "http://34.209.128.167:9000"
-     // }
       steps {
-        //withCredentials([string(credentialsId: 'sonarqube', variable: 'SONAR_AUTH_TOKEN')]) {
-          withSonarQubeEnv('sonarqube') {
-           sh 'cd java-maven-sonar-argocd-helm-k8s/spring-boot-app && mvn sonar:sonar'
+             withSonarQubeEnv('sonarqube') {
+             sh 'cd java-maven-sonar-argocd-helm-k8s/spring-boot-app && mvn sonar:sonar'
         }
-     // }
     }
+}
     stage('Build and Push Docker Image') {
       environment {
         DOCKER_IMAGE = "janadevps1/ultimate-cicd:${BUILD_NUMBER}"
