@@ -23,10 +23,11 @@ pipeline {
              def qg = waitForQualityGate()
                 if (qg.status != 'OK') {
                 error "Pipeline aborted due to qualtigate error: ${qg.status}"
-                }
-            }
-                sh 'cd java-maven-sonar-argocd-helm-k8s/spring-boot-app && mvn clean package'
+                      }
+              }
+              sh 'cd java-maven-sonar-argocd-helm-k8s/spring-boot-app && mvn clean package'
     }
+}
 }
 }
     stage('Build and Push Docker Image') {
